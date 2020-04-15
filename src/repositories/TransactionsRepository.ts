@@ -23,19 +23,21 @@ class TransactionsRepository {
   }
 
   public getBalance(): Balance {
-    const initialValue = 0;
-
     const income = this.transactions.reduce(
       (total, currentValue) =>
-        currentValue.type === 'income' ? total + currentValue.value : total,
-      initialValue,
+        currentValue.type === 'income'
+          ? total + Number(currentValue.value)
+          : total,
+      0,
     );
 
     const outcome = this.transactions.reduce(
       (total, currentValue) =>
-        currentValue.type === 'outcome' ? total + currentValue.value : total,
+        currentValue.type === 'outcome'
+          ? total + Number(currentValue.value)
+          : total,
 
-      initialValue,
+      0,
     );
 
     const balance = {
